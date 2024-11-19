@@ -32,8 +32,9 @@ public class HomePage {
         myAccountMenu.click();
 
     }
-    public void selectLoginBtn(){
+    public LoginPage selectLoginBtn(){
         loginOption.click();
+        return new LoginPage(driver);
     }
 
     public void selectRegisterBtn(){

@@ -30,6 +30,7 @@ public class Login extends Base {
     public Login(){
         super();
     }
+    LoginPage loginPage;
 
     @BeforeMethod
     public void openLoginPage() {
@@ -37,28 +38,24 @@ public class Login extends Base {
         setBrowserAndOpenUrl();
         HomePage homePage = new HomePage(driver);
         homePage.clickOnAccountBtn();
-         homePage.selectLoginBtn();
+        loginPage= homePage.selectLoginBtn();
 
 
     }
 
     @Test(priority = 1,dataProvider ="validCredentialsData")
     public void verifyLoginWithValidCredentials(String email,String password) {
-        LoginPage loginPage = new LoginPage(driver);
+
         AccountPage accountPage = new AccountPage(driver);
         loginPage.enterEmail(properties.getProperty("validEmail"));
-    //    driver.findElement(By.cssSelector("#input-email")).sendKeys(properties.getProperty("validEmail"));
         loginPage.enterPassword(properties.getProperty("password"));
         loginPage.clickSubmitBtn();
-     //  driver.findElement(By.cssSelector("[type='submit']")).click();
-
         Assert.assertTrue(accountPage.isYourAccountOptionDisplayed(), "Edit your account info");
 
     }
 
     @Test(priority = 2, invocationCount = 1)
     public void verifyLoginWithInvalidCredentials() {
-        LoginPage loginPage = new LoginPage(driver);
         loginPage.enterEmail(generateRandomEmail());
         loginPage.enterPassword(dataProp.getProperty("invalidPassword"));
         loginPage.clickSubmitBtn();
@@ -70,7 +67,6 @@ public class Login extends Base {
 
     @Test(priority = 4)
     public void verifyLoginWithValidEmailAndInvalidPassport() {
-        LoginPage loginPage = new LoginPage(driver);
         loginPage.enterEmail(properties.getProperty("validEmail"));
         loginPage.enterPassword(dataProp.getProperty("invalidPassword"));
         loginPage.clickSubmitBtn();
@@ -82,7 +78,6 @@ public class Login extends Base {
 
     @Test(priority = 3)
     public void verifyLoginWithInvalidEmailAndValidPassword() {
-        LoginPage loginPage=new LoginPage(driver);
         loginPage.enterEmail(generateRandomEmail());
         loginPage.enterPassword(properties.getProperty("password"));
         loginPage.clickSubmitBtn();
@@ -94,7 +89,6 @@ public class Login extends Base {
 
     @Test(priority = 5)
     public void verifyLoginWithoutCredentials() {
-        LoginPage loginPage= new LoginPage(driver);
        loginPage.enterEmail("");
         loginPage.enterPassword("");
         loginPage.clickSubmitBtn();
