@@ -13,13 +13,13 @@ public class Search extends Base {
     public Search(){
         super();
     }
+    SearchPage searchPage;
   @Test
     public void verifySearchWithValidProduct(){
       setBrowserAndOpenUrl();
       HomePage homePage = new HomePage(driver);
-      SearchPage searchPage =new SearchPage(driver);
       homePage.enterProductIntoSearchField(dataProp.getProperty("existingProduct"));
-      homePage.clickSearchBtn();
+      searchPage=homePage.clickSearchBtn();
       Assert.assertTrue(searchPage.successSearchResultIsDisplayed());
 
 
@@ -29,9 +29,9 @@ public class Search extends Base {
     public void verifySearchWithNotInStockProduct(){
       setBrowserAndOpenUrl();
       HomePage homePage = new HomePage(driver);
-      SearchPage searchPage = new SearchPage(driver);
+
        homePage.enterProductIntoSearchField(dataProp.getProperty("not-existingProduct"));
-       homePage.clickSearchBtn();
+       searchPage=homePage.clickSearchBtn();
      //   WebElement info = wait.until(ExpectedConditions
       //          .visibilityOfElementLocated(By.xpath("//div[@id= 'content']/input/following-sibling::p")));
         String actualMessage = searchPage.getNoProductMessageText();
@@ -43,10 +43,7 @@ public class Search extends Base {
     public void verifySearchWithoutProduct(){
         setBrowserAndOpenUrl();
         HomePage homePage = new HomePage(driver);
-        SearchPage searchPage = new SearchPage(driver);
-
-        homePage.clickSearchBtn();
-
+        searchPage=homePage.clickSearchBtn();
         String actualMessage = searchPage.getNoProductMessageText();
         String warningMessage = dataProp.getProperty("Not-existingProductWarning");
         Assert.assertEquals(actualMessage,warningMessage);

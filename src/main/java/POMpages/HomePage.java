@@ -25,8 +25,9 @@ public class HomePage {
 
     }
     //actions
-    public void clickSearchBtn(){
+    public SearchPage clickSearchBtn(){
         searchBtn.click();
+        return new SearchPage(driver);
     }
     public void clickOnAccountBtn(){
         myAccountMenu.click();

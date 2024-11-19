@@ -38,8 +38,7 @@ public class Register extends Base {
         registerPage.enterPassword(properties.getProperty("password"));
         registerPage.enterConfirmationPassword(properties.getProperty("password"));
         registerPage.selectPrivacyPolicy();
-        registerPage.clickOnContinueBtn();
-        AccountSuccessPage accountSuccessPage = new AccountSuccessPage(driver);
+        AccountSuccessPage accountSuccessPage= registerPage.clickOnContinueBtn();
         String actualMessage =accountSuccessPage.successMessage();
         String successMessage = dataProp.getProperty("accountCreatedMessage");
          Assert.assertEquals(actualMessage,successMessage,"account is NOT created");

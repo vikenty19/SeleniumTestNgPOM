@@ -79,8 +79,9 @@ public class RegisterPage {
 
         privacyPolicyField.click();
     }
-    public void clickOnContinueBtn(){
+    public  AccountSuccessPage clickOnContinueBtn(){
         continueBtn.click();
+        return new AccountSuccessPage(driver);
     }
     public String warningMessage(){
         String alert = alertMessage.getText();
