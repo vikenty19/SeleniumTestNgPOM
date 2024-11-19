@@ -37,8 +37,9 @@ public class HomePage {
         return new LoginPage(driver);
     }
 
-    public void selectRegisterBtn(){
+    public RegisterPage selectRegisterBtn(){
         registerOption.click();
+        return new RegisterPage(driver);
     }
     public void enterProductIntoSearchField(String productName){
         searchField.sendKeys(productName);

@@ -31,8 +31,9 @@ public class LoginPage  {
         passwordField.sendKeys(password);
 
     }
-    public void clickSubmitBtn(){
+    public AccountPage clickSubmitBtn(){
         submitBtn.click();
+        return new AccountPage(driver);
     }
     public String actualWarningMessage(){
         String actualWarningMessage = warningAlertMessage.getText();

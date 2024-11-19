@@ -32,6 +32,7 @@ public class Login extends Base {
     }
     LoginPage loginPage;
 
+
     @BeforeMethod
     public void openLoginPage() {
 
@@ -45,11 +46,9 @@ public class Login extends Base {
 
     @Test(priority = 1,dataProvider ="validCredentialsData")
     public void verifyLoginWithValidCredentials(String email,String password) {
-
-        AccountPage accountPage = new AccountPage(driver);
         loginPage.enterEmail(properties.getProperty("validEmail"));
         loginPage.enterPassword(properties.getProperty("password"));
-        loginPage.clickSubmitBtn();
+        AccountPage accountPage= loginPage.clickSubmitBtn();
         Assert.assertTrue(accountPage.isYourAccountOptionDisplayed(), "Edit your account info");
 
     }

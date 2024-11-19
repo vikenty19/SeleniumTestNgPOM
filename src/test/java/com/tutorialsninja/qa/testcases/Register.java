@@ -13,6 +13,7 @@ public class Register extends Base {
     public Register(){
         super();
     }
+    RegisterPage registerPage;
 
     @BeforeMethod
     public void openRegisterPage(){
@@ -20,7 +21,7 @@ public class Register extends Base {
         setBrowserAndOpenUrl();
         HomePage homePage = new HomePage(driver);
         homePage.clickOnAccountBtn();
-        homePage.selectRegisterBtn();
+        registerPage= homePage.selectRegisterBtn();
 
 
     }
@@ -28,7 +29,7 @@ public class Register extends Base {
 
     @Test
     public void verifyRegisterUserWithMandatoryFields() {
-        RegisterPage registerPage = new RegisterPage(driver);
+
         registerPage.enterFirstName(dataProp.getProperty("firstName"));
         registerPage.enterLastName(dataProp.getProperty("lastName"));
         //just for example we can use LoginPage
@@ -46,7 +47,6 @@ public class Register extends Base {
     }
     @Test
      public void verifyRegisterUserWithExistingEmail(){
-        RegisterPage registerPage = new RegisterPage(driver);
         registerPage.enterFirstName(dataProp.getProperty("firstName"));
         registerPage.enterLastName(dataProp.getProperty("lastName"));
          registerPage.enterEmail(properties.getProperty("validEmail"));
@@ -63,7 +63,6 @@ public class Register extends Base {
      }
      @Test
      public void registerUserWithoutCredentials(){
-         RegisterPage registerPage = new RegisterPage(driver);
          registerPage.enterFirstName("");
          registerPage.enterLastName("");
          registerPage.enterEmail("");
