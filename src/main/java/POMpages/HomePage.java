@@ -34,14 +34,22 @@ public class HomePage {
 
     }
     public LoginPage selectLoginBtn(){
+
         loginOption.click();
         return new LoginPage(driver);
     }
 
     public RegisterPage selectRegisterBtn(){
+
         registerOption.click();
         return new RegisterPage(driver);
     }
+    public RegisterPage navigateToRegisterPage(){
+        myAccountMenu.click();
+        registerOption.click();
+        return new RegisterPage(driver);
+    }
+
     public void enterProductIntoSearchField(String productName){
         searchField.sendKeys(productName);
 

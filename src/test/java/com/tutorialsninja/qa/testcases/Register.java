@@ -20,8 +20,8 @@ public class Register extends Base {
       //  loadProperties(); //call it from Base class 1 way public void loadProperties()
         setBrowserAndOpenUrl();
         HomePage homePage = new HomePage(driver);
-        homePage.clickOnAccountBtn();
-        registerPage= homePage.selectRegisterBtn();
+     //   homePage.clickOnAccountBtn();
+        registerPage= homePage.navigateToRegisterPage();
 
 
     }

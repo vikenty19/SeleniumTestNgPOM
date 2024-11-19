@@ -46,8 +46,7 @@ public class Login extends Base {
 
     @Test(priority = 1,dataProvider ="validCredentialsData")
     public void verifyLoginWithValidCredentials(String email,String password) {
-        loginPage.enterEmail(properties.getProperty("validEmail"));
-        loginPage.enterPassword(properties.getProperty("password"));
+         loginPage.login(properties.getProperty("validEmail"),properties.getProperty("password"));
         AccountPage accountPage= loginPage.clickSubmitBtn();
         Assert.assertTrue(accountPage.isYourAccountOptionDisplayed(), "Edit your account info");
 
@@ -55,8 +54,9 @@ public class Login extends Base {
 
     @Test(priority = 2, invocationCount = 1)
     public void verifyLoginWithInvalidCredentials() {
-        loginPage.enterEmail(generateRandomEmail());
-        loginPage.enterPassword(dataProp.getProperty("invalidPassword"));
+      //  loginPage.enterEmail(generateRandomEmail());
+       // loginPage.enterPassword(dataProp.getProperty("invalidPassword"));
+        loginPage.login(generateRandomEmail(),dataProp.getProperty("invalidPassword"));
         loginPage.clickSubmitBtn();
         String actualWarningMessage = loginPage.actualWarningMessage();
         String expectedWarningMessage = dataProp.getProperty("warningMessageForInvalidPassword");
@@ -68,6 +68,7 @@ public class Login extends Base {
     public void verifyLoginWithValidEmailAndInvalidPassport() {
         loginPage.enterEmail(properties.getProperty("validEmail"));
         loginPage.enterPassword(dataProp.getProperty("invalidPassword"));
+        loginPage.login(properties.getProperty("validEmail"),dataProp.getProperty("invalidPassword"));
         loginPage.clickSubmitBtn();
         String actualWarningMessage = loginPage.actualWarningMessage();
         String expectedWarningMessage = dataProp.getProperty("warningMessageForInvalidPassword");
@@ -79,6 +80,7 @@ public class Login extends Base {
     public void verifyLoginWithInvalidEmailAndValidPassword() {
         loginPage.enterEmail(generateRandomEmail());
         loginPage.enterPassword(properties.getProperty("password"));
+        loginPage.login(generateRandomEmail(),properties.getProperty("password"));
         loginPage.clickSubmitBtn();
         String actualWarningMessage =loginPage.actualWarningMessage();
         String expectedWarningMessage = dataProp.getProperty("warningMessageForInvalidPassword");
@@ -88,8 +90,7 @@ public class Login extends Base {
 
     @Test(priority = 5)
     public void verifyLoginWithoutCredentials() {
-       loginPage.enterEmail("");
-        loginPage.enterPassword("");
+        loginPage.login("","");
         loginPage.clickSubmitBtn();
         String actualWarningMessage = loginPage.actualWarningMessage();;
         String expectedWarningMessage = dataProp.getProperty("warningMessageForInvalidPassword");

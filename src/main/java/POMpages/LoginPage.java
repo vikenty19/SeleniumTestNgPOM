@@ -32,8 +32,12 @@ public class LoginPage  {
 
     }
     public AccountPage clickSubmitBtn(){
-        submitBtn.click();
+            submitBtn.click();
         return new AccountPage(driver);
+    }
+    public void login(String email,String password){
+        enterEmail(email);
+        enterPassword(password);
     }
     public String actualWarningMessage(){
         String actualWarningMessage = warningAlertMessage.getText();
