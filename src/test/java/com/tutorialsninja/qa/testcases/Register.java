@@ -72,11 +72,6 @@ public class Register extends Base {
          registerPage.enterConfirmationPassword("");
          registerPage.selectPrivacyPolicy();
          registerPage.clickOnContinueBtn();
-
-        /* String actualWarningMessage =registerPage.retrievePrivacyPolicyWarning();
-         String privacyWarning = dataProp.getProperty("privacyPolicyWarning");
-         Assert.assertTrue(actualWarningMessage
-                 .contains(privacyWarning),"account is NOT created");*/
          String enterNameWarning = registerPage.getFirstNameWarning();
          String firstNameWarning = dataProp.getProperty("firstNameWarning");
          Assert.assertTrue(enterNameWarning.contains(firstNameWarning));
