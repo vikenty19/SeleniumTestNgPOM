@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="TutorialNinja Automation Suite">
     <listeners>
-        <listener class-name="Listeners.MyListeners"></listener>
+        <listener class-name="Listeners.MyListeners"/>
     </listeners>
     <test verbose="2" preserve-order="true" name="C:/Users/Acer/Documents/GitHub1/HybridTestNgProject">
         <classes>
