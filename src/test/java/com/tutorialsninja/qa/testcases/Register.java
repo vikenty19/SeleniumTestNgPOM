@@ -40,33 +40,28 @@ public class Register extends Base {
     }
     @Test
      public void verifyRegisterUserWithExistingEmail(){
-        registerPage.enterFirstName(dataProp.getProperty("firstName"));
-        registerPage.enterLastName(dataProp.getProperty("lastName"));
-         registerPage.enterEmail(properties.getProperty("validEmail"));
-        registerPage.enterTelephoneNumber(dataProp.getProperty("telephoneNumber"));;
-        registerPage.enterPassword(properties.getProperty("password"));
-        registerPage.enterConfirmationPassword(properties.getProperty("password"));
-        registerPage.selectPrivacyPolicy();
+
+        registerPage.registerUserWithValidCredentials(dataProp.getProperty("firstName"),dataProp.getProperty("lastName"),
+                properties.getProperty("validEmail"),properties.getProperty("password"), dataProp.getProperty("telephoneNumber") );
         registerPage.clickOnContinueBtn();
-         String duplicateEmailWarning = registerPage.warningMessage();
-         String expectedWarningMessage = dataProp.getProperty("accountAlreadyRegisteredWarning");
-         Assert.assertTrue(duplicateEmailWarning.contains(expectedWarningMessage));
+        String expectedWarningMessage = dataProp.getProperty("accountAlreadyRegisteredWarning");
+         Assert.assertTrue(registerPage.warningMessage().contains(expectedWarningMessage));
 
 
      }
      @Test
      public void registerUserWithoutCredentials(){
-         registerPage.enterFirstName("");
+      /*   registerPage.enterFirstName("");
          registerPage.enterLastName("");
          registerPage.enterEmail("");
          registerPage.enterTelephoneNumber("");
          registerPage.enterPassword("");
          registerPage.enterConfirmationPassword("");
-         registerPage.selectPrivacyPolicy();
+         registerPage.selectPrivacyPolicy();*/
          registerPage.clickOnContinueBtn();
-         String enterNameWarning = registerPage.getFirstNameWarning();
          String firstNameWarning = dataProp.getProperty("firstNameWarning");
-         Assert.assertTrue(enterNameWarning.contains(firstNameWarning));
+         //there are several warning messages more, but i just not put in here
+         Assert.assertTrue(registerPage.getFirstNameWarning().contains(firstNameWarning));
 
 
 
