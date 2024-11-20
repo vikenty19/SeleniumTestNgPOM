@@ -30,14 +30,8 @@ public class Register extends Base {
     @Test
     public void verifyRegisterUserWithMandatoryFields() {
 
-        registerPage.enterFirstName(dataProp.getProperty("firstName"));
-        registerPage.enterLastName(dataProp.getProperty("lastName"));
-        //just for example we can use LoginPage
-        registerPage.enterEmail(Utilities.generateRandomEmail());
-        registerPage.enterTelephoneNumber(dataProp.getProperty("telephoneNumber"));
-        registerPage.enterPassword(properties.getProperty("password"));
-        registerPage.enterConfirmationPassword(properties.getProperty("password"));
-        registerPage.selectPrivacyPolicy();
+        registerPage.registerUserWithValidCredentials(dataProp.getProperty("firstName"),dataProp.getProperty("lastName"),
+                Utilities.generateRandomEmail(),properties.getProperty("password"), dataProp.getProperty("telephoneNumber") );
         AccountSuccessPage accountSuccessPage= registerPage.clickOnContinueBtn();
         String actualMessage =accountSuccessPage.successMessage();
         String successMessage = dataProp.getProperty("accountCreatedMessage");

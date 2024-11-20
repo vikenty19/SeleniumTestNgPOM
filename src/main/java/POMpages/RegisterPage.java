@@ -88,5 +88,14 @@ public class RegisterPage {
         return alert;
 
     }
+    public void registerUserWithValidCredentials(String firstName,String lastName,String email,String password,String phone){
+        firstNameField.sendKeys(firstName);
+        lastNameField.sendKeys(lastName);
+        emailField.sendKeys(email);
+        passwordField.sendKeys(password);
+        telephoneField.sendKeys(phone);
+        passwordConfirmationField.sendKeys(password);
+        privacyPolicyField.click();
+    }
 
 }
