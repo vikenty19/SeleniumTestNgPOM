@@ -3,51 +3,53 @@ package com.tutorialsninja.qa.testcases;
 import POMpages.HomePage;
 import POMpages.SearchPage;
 import com.tutorialsninja.base.Base;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class Search extends Base {
-    public Search(){
+    public Search() {
         super();
     }
+
     SearchPage searchPage;
-  @Test
-    public void verifySearchWithValidProduct(){
-      setBrowserAndOpenUrl();
-      HomePage homePage = new HomePage(driver);
-      homePage.enterProductIntoSearchField(dataProp.getProperty("existingProduct"));
-      searchPage=homePage.clickSearchBtn();
-      Assert.assertTrue(searchPage.successSearchResultIsDisplayed());
+    HomePage homePage;
 
-
-
-    }
-    @Test
-    public void verifySearchWithNotInStockProduct(){
-      setBrowserAndOpenUrl();
-      HomePage homePage = new HomePage(driver);
-
-       homePage.enterProductIntoSearchField(dataProp.getProperty("not-existingProduct"));
-       searchPage=homePage.clickSearchBtn();
-     //   WebElement info = wait.until(ExpectedConditions
-      //          .visibilityOfElementLocated(By.xpath("//div[@id= 'content']/input/following-sibling::p")));
-        String actualMessage = searchPage.getNoProductMessageText();
-        String warningMessage = dataProp.getProperty("Not-existingProductWarning");
-        Assert.assertEquals(actualMessage,warningMessage);
-
-    }
-    @Test
-    public void verifySearchWithoutProduct(){
+    @BeforeMethod
+    public void setUp() {
         setBrowserAndOpenUrl();
-        HomePage homePage = new HomePage(driver);
-        searchPage=homePage.clickSearchBtn();
+        homePage = new HomePage(driver);
+    }
+
+    @Test
+    public void verifySearchWithValidProduct() {
+        homePage.enterProductIntoSearchField(dataProp.getProperty("existingProduct"));
+        searchPage = homePage.clickSearchBtn();
+        Assert.assertTrue(searchPage.successSearchResultIsDisplayed());
+
+    }
+
+    @Test
+    public void verifySearchWithNotInStockProduct() {
+        homePage.enterProductIntoSearchField(dataProp.getProperty("not-existingProduct"));
+        //create SearchPage object on HomePage method
+        searchPage = homePage.clickSearchBtn();
+        //   WebElement info = wait.until(ExpectedConditions
+        //          .visibilityOfElementLocated(By.xpath("//div[@id= 'content']/input/following-sibling::p")));
         String actualMessage = searchPage.getNoProductMessageText();
         String warningMessage = dataProp.getProperty("Not-existingProductWarning");
-        Assert.assertEquals(actualMessage,warningMessage);
+        Assert.assertEquals(actualMessage, warningMessage);
 
+    }
+
+    @Test
+    public void verifySearchWithoutProduct() {
+        searchPage = homePage.clickSearchBtn();
+        String actualMessage = searchPage.getNoProductMessageText();
+        String warningMessage = dataProp.getProperty("Not-existingProductWarning");
+        Assert.assertEquals(actualMessage, warningMessage);
 
     }
 }
