@@ -20,7 +20,7 @@ public class HomePage {
 //constructor
     public HomePage(WebDriver driver){
         this.driver = driver;
-        //page Factory initialaize connection between Webelements and locators
+        //page Factory initialize connection between Webelements and locators
         PageFactory.initElements(driver,this);
 
     }

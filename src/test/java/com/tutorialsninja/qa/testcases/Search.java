@@ -39,12 +39,12 @@ public class Search extends Base {
         //   WebElement info = wait.until(ExpectedConditions
         //          .visibilityOfElementLocated(By.xpath("//div[@id= 'content']/input/following-sibling::p")));
         String actualMessage = searchPage.getNoProductMessageText();
-        String warningMessage = dataProp.getProperty("Not-existingProductWarning");
+        String warningMessage = "abc"; //dataProp.getProperty("Not-existingProductWarning");
         Assert.assertEquals(actualMessage, warningMessage);
 
     }
 
-    @Test
+    @Test(dependsOnMethods = "verifySearchWithNotInStockProduct")
     public void verifySearchWithoutProduct() {
         searchPage = homePage.clickSearchBtn();
         String actualMessage = searchPage.getNoProductMessageText();
