@@ -26,18 +26,7 @@ public class WriteObject {
                 throw new RuntimeException(e);
             }
         }
-////////// Arrays
-       Person[] persons ={person1,person2, new Person(3,"Tom")};
-        FileOutputStream    fos = null;//create file
-        try {
-            fos = new FileOutputStream("./people.bin");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(persons);
-            oos.close();
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
     }
 
