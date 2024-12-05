@@ -19,7 +19,14 @@ public class ReadingFromFile {
             File fileNumbers = new File(pathNumbers);
             Scanner scanner1= new Scanner(fileNumbers);
              String line1 = scanner1.nextLine();
-             String[]numbers = line1.split(" ");
+             String[]numbersString = line1.split(" ");
+             int[]numbers= new int[3];
+             int count = 0;
+        for (String number: numbersString) {
+            numbers[count++] = Integer.parseInt(number);
+
+        }
+        System.out.println(numbers[0]);//to understand how count works
         System.out.println(Arrays.toString(numbers));
         //reading several lines
         String path2 =System.getProperty("user.dir")+"/src/main/java/testData/SeveralLinesReading.csv";
