@@ -18,7 +18,7 @@ public class ReadObject {
             Person person1 = (Person) ois.readObject();
             Person person2 = (Person) ois.readObject();
             // Array reading
-//List People downcusting from Object
+//List People downcasting from Object
       //    Person[]people = (Person[]) ois.readObject();
             ois.close();// Important!!
            System.out.println(person1);

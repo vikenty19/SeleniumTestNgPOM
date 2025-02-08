@@ -8,7 +8,7 @@ public class ExtentReport {
 
     public void generateExtendReport(){
         ExtentReport extentReport = new ExtentReport();
-        //create file and directory toi reports
+        //create file and directory to reports
         File extentReportFile = new File(System
                 .getProperty("user.dir")+"/src/test/test-output/ExtentReports/extentReport.html");
         ExtentSparkReporter sparkReporter = new ExtentSparkReporter(extentReportFile);
