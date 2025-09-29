@@ -39,7 +39,7 @@ public class Search extends Base {
         //   WebElement info = wait.until(ExpectedConditions
         //          .visibilityOfElementLocated(By.xpath("//div[@id= 'content']/input/following-sibling::p")));
         String actualMessage = searchPage.getNoProductMessageText();
-        String warningMessage = "abc"; //dataProp.getProperty("Not-existingProductWarning");
+        String warningMessage = dataProp.getProperty("Not-existingProductWarning");
         Assert.assertEquals(actualMessage, warningMessage);
 
     }

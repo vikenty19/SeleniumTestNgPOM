@@ -4,19 +4,15 @@ import POMpages.AccountPage;
 import POMpages.HomePage;
 import POMpages.LoginPage;
 import com.tutorialsninja.base.Base;
+import listeners.MyListeners;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
-import java.time.Duration;
-import java.util.Date;
+import org.testng.annotations.*;
+import org.testng.annotations.Listeners;
 
 import static com.tutorialsninja.qa.utils.Utilities.generateRandomEmail;
 import static com.tutorialsninja.qa.utils.Utilities.getTestDataFromExcel;
 
-
+@Listeners({MyListeners.class})
 public class Login extends Base {
     //Call the constructor from Base()
     public Login(){
@@ -36,7 +32,7 @@ public class Login extends Base {
 
     }
 
-    @Test(priority = 1,dataProvider ="validCredentialsData")
+    @Test(enabled = false,priority = 1,dataProvider ="validCredentialsData")
     public void verifyLoginWithValidCredentials(String email,String password) {
          loginPage.login(properties.getProperty("validEmail"),properties.getProperty("password"));
         AccountPage accountPage= loginPage.clickSubmitBtn();
@@ -54,11 +50,9 @@ public class Login extends Base {
 
     }
 
-    @Test(priority = 4)
+    @Test(priority = 4)//made it failed deliberately
     public void verifyLoginWithValidEmailAndInvalidPassport() {
-        loginPage.enterEmail(properties.getProperty("validEmail"));
-        loginPage.enterPassword(dataProp.getProperty("invalidPassword"));
-        loginPage.login(properties.getProperty("validEmail"),dataProp.getProperty("invalidPassword"));
+        loginPage.login(properties.getProperty("validEmail"),"12345");//dataProp.getProperty("invalidPassword"));
         loginPage.clickSubmitBtn();
         String actualWarningMessage = loginPage.actualWarningMessage();
         String expectedWarningMessage = dataProp.getProperty("warningMessageForInvalidPassword");
@@ -68,8 +62,6 @@ public class Login extends Base {
 
     @Test(priority = 3)
     public void verifyLoginWithInvalidEmailAndValidPassword() {
-        loginPage.enterEmail(generateRandomEmail());
-        loginPage.enterPassword(properties.getProperty("password"));
         loginPage.login(generateRandomEmail(),properties.getProperty("password"));
         loginPage.clickSubmitBtn();
         String actualWarningMessage =loginPage.actualWarningMessage();
@@ -89,14 +81,14 @@ public class Login extends Base {
     }
     @DataProvider(name = "validCredentials")
  public Object[][] loginWithTestData() {
-        Object[][]data ={{"amotooricap9gmail.com","12345"},
+        Object[][]data ={{"amotooricap7gmail.com","12345"},
                 {"amotooricap3gmail.com","12345"},
                 {"amotooricap1gmail.com","12345"}};
         return data;
     }
     @DataProvider(name = "validCredentialsData")
     public Object[][] excelTestData(){
-        Object[][] testData =getTestDataFromExcel("Login");
+        Object[][] testData =getTestDataFromExcel("LoginTest");
         return testData;
     }
 

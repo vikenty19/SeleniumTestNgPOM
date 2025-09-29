@@ -18,6 +18,11 @@ public class Utilities {
         return "amotoori" + addedTimeStamp+"@gmail.com";
 
     }
+    public static String timeStamp(){
+        Date date = new Date();
+        return date.toString().replace(" ","_").replace(":","_").substring(11,19);
+
+    }
 public static Object[][] getTestDataFromExcel(String sheetName) {
      XSSFWorkbook workbook = null;
 
@@ -63,5 +68,6 @@ public static Object[][] getTestDataFromExcel(String sheetName) {
             return dataKit;
 
 }
+
 
 }
