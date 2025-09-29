@@ -31,9 +31,9 @@ public class Search extends Base {
 
     }
 
-    @Test
+    @Test//failed deliberately
     public void verifySearchWithNotInStockProduct() {
-        homePage.enterProductIntoSearchField(dataProp.getProperty("not-existingProduct"));
+        homePage.enterProductIntoSearchField(dataProp.getProperty("existingProduct"));//"not-existingProduct"
         //create SearchPage object on HomePage method
         searchPage = homePage.clickSearchBtn();
         //   WebElement info = wait.until(ExpectedConditions
