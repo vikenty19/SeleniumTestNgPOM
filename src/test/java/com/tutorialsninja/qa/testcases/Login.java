@@ -24,7 +24,7 @@ public class Login extends Base {
     @BeforeMethod
     public void openLoginPage() {
 
-        setBrowserAndOpenUrl();
+      //  setBrowserAndOpenUrl();
         HomePage homePage = new HomePage(driver);
         homePage.clickOnAccountBtn();
         loginPage= homePage.selectLoginBtn();
@@ -32,7 +32,7 @@ public class Login extends Base {
 
     }
 
-    @Test(enabled = false,priority = 1,dataProvider ="validCredentialsData")
+    @Test(enabled =false,priority = 1)//dataProvider ="validCredentialsData")
     public void verifyLoginWithValidCredentials(String email,String password) {
          loginPage.login(properties.getProperty("validEmail"),properties.getProperty("password"));
         AccountPage accountPage= loginPage.clickSubmitBtn();

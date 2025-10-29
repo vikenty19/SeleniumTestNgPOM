@@ -7,6 +7,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
@@ -60,7 +61,7 @@ public class Base {
         }
 
     }
-
+    @BeforeMethod
     public void setBrowserAndOpenUrl() {
         pickBrowserAndOpenUrl(properties.getProperty("browser"));
         driver.manage().window().maximize();
@@ -68,6 +69,8 @@ public class Base {
         driver.get(properties.getProperty("url"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
+
+
     @AfterMethod
     public void tearDown() {
         driver.quit();

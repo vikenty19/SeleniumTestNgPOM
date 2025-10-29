@@ -6,6 +6,7 @@ import com.tutorialsninja.base.Base;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -19,7 +20,7 @@ public class Search extends Base {
 
     @BeforeMethod
     public void setUp() {
-        setBrowserAndOpenUrl();
+    //    setBrowserAndOpenUrl();
         homePage = new HomePage(driver);
     }
 
@@ -33,7 +34,7 @@ public class Search extends Base {
 
     @Test//failed deliberately
     public void verifySearchWithNotInStockProduct() {
-        homePage.enterProductIntoSearchField(dataProp.getProperty("existingProduct"));//"not-existingProduct"
+        homePage.enterProductIntoSearchField(dataProp.getProperty("not-existingProduct"));//"not-existingProduct"
         //create SearchPage object on HomePage method
         searchPage = homePage.clickSearchBtn();
         //   WebElement info = wait.until(ExpectedConditions
